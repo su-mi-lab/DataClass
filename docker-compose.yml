@@ -1,0 +1,7 @@
+version: '3'
+services:
+  app:
+    build: ./.docker
+    container_name: "data-class-php"
+    volumes:
+      - ./:/var/opt/app

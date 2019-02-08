@@ -1,0 +1,30 @@
+{
+  "name": "sumi_lab/data_class",
+  "description": "data class",
+  "keywords": ["data class"],
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/su-mi-lab/DataClass/issues",
+    "source": "https://github.com/su-mi-lab/DataClass/"
+  },
+  "authors": [
+    {
+      "name": "Yuta Sumiyoshi",
+      "email": "mail.sumimaru@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "DataClass\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "php vendor/phpunit/phpunit/phpunit --configuration tests/phpunit.xml tests"
+  }
+}

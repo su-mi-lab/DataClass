@@ -79,6 +79,31 @@ class DataClassTest extends TestCase
             $this->assertEquals(true, false);
         }
     }
+
+    /**
+     * @throws AssignException
+     * @throws FinalClassException
+     * @throws PropertyException
+     */
+    public function testCopy() {
+
+        $name = 'some name';
+        $age = '13';
+        $flag = true;
+        $list = [1, 2, 3];
+
+        $dataClass = new User(compact('name', 'age', 'flag', 'list'));
+
+        $copyDataClass = $dataClass->copy([
+           'name' => 'update'
+        ]);
+
+        $this->assertNotEquals($dataClass->name, $copyDataClass->name);
+        $this->assertEquals($dataClass->age, $copyDataClass->age);
+        $this->assertEquals($dataClass->flag, $copyDataClass->flag);
+        $this->assertEquals($dataClass->list, $copyDataClass->list);
+
+    }
 }
 
 class NgDataClass extends DataClass
@@ -94,6 +119,10 @@ final class TestPropertyException extends DataClass
     protected $test2;
 
     public $test3;
+
+    public function test() {
+        return $this->test;
+    }
 
 }
 

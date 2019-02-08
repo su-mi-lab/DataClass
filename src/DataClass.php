@@ -6,6 +6,7 @@ use DataClass\Exception\AssignException;
 use DataClass\Exception\FinalClassException;
 use DataClass\Exception\PropertyException;
 
+
 abstract class DataClass
 {
     /**
@@ -23,6 +24,9 @@ abstract class DataClass
      *
      * @param array $arg
      *
+     * @throws PropertyException
+     * @throws FinalClassException
+     * @throws AssignException
      * @throws \Exception
      */
     final public function __construct(array $arg = [])
@@ -33,7 +37,7 @@ abstract class DataClass
             throw new FinalClassException('final class only');
         }
 
-        if ((bool) $reflection->getProperties()) {
+        if ((bool)$reflection->getProperties()) {
             throw new PropertyException('can not use property');
         }
 
@@ -50,11 +54,29 @@ abstract class DataClass
      * @param string $name
      * @param mixed  $value
      *
-     * @throws \Exception
+     * @throws AssignException
      */
     final public function __set($name, $value)
     {
         throw new AssignException('can not assign');
+    }
+
+    /**
+     * @param array $updateParams
+     *
+     * @return DataClass
+     * @throws AssignException
+     * @throws FinalClassException
+     * @throws PropertyException
+     */
+    final public function copy(array $updateParams): DataClass
+    {
+        $params = [];
+        foreach ($this->properties as $key => $value) {
+            $params[$key] = (isset($updateParams[$key])) ? $updateParams[$key] : $value;
+        }
+
+        return new static($params);
     }
 
     final private function setTypes(string $docs): void

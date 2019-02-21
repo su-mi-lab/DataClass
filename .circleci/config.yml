@@ -1,0 +1,8 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - run: docker-compose up -d
+      - run: docker-compose composer install
+      - run: docker-compose composer test

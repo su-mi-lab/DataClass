@@ -3,6 +3,7 @@ jobs:
   build:
     machine: true
     steps:
+      - checkout
       - run: docker-compose up -d
       - run: docker-compose composer install
       - run: docker-compose composer test

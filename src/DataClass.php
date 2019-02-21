@@ -26,7 +26,6 @@ abstract class DataClass
      *
      * @throws PropertyException
      * @throws FinalClassException
-     * @throws AssignException
      * @throws \Exception
      */
     final public function __construct(array $arg = [])
@@ -65,7 +64,6 @@ abstract class DataClass
      * @param array $updateParams
      *
      * @return DataClass
-     * @throws AssignException
      * @throws FinalClassException
      * @throws PropertyException
      */
